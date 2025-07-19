@@ -4,40 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Educational Video</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f0f0f0;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef9f9, #e0eafc);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
     }
+
     h1 {
-      color: #333;
+      color: #2c3e50;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
     }
+
     .video-container {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 ratio */
-      height: 0;
+      width: 90%;
+      max-width: 900px;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
       overflow: hidden;
-      max-width: 100%;
-      background: #000;
-      margin-top: 20px;
     }
+
     .video-container iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Watch My Educational Video</h1>
+  <h1>📚 Watch My Educational Video</h1>
   <div class="video-container">
     <iframe 
-      src="https://www.youtube.com/watch?v=O-VL1K9ih5o" 
-      frameborder="0" 
+      src="https://drive.google.com/file/d/1rJU-KfNwIlLdCLJ_uVvw37piK7rFj1-d/preview"
       allow="autoplay">
     </iframe>
   </div>
