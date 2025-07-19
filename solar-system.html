@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System | Ronald Ong Ajusan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      overflow-x: hidden;
+      animation: backgroundMove 60s linear infinite;
+      background-image: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.03), transparent 70%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.03), transparent 70%);
+    }
+
+    @keyframes backgroundMove {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 1000px 0, -1000px 0; }
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a.active {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h1, h2, h3 {
+      color: #facc15;
+      margin-bottom: 1rem;
+      animation: slideIn 1s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    input, button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      background: #38bdf8;
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0ea5e9;
+    }
+
+    .planet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .planet-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: floatCard 3s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .planet-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .planet-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+      animation: popIn 0.6s ease;
+    }
+
+    .warning-text {
+      color: #f87171;
+    }
+
+    .planet-info-section {
+      margin-top: 4rem;
+    }
+
+    .planet-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 16px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .planet-info img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 12px;
+      animation: rotatePlanet 20s linear infinite;
+    }
+
+    @keyframes rotatePlanet {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .planet-info-content {
+      max-width: 800px;
+    }
+
+    .planet-info-content h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.4rem;
+      color: #facc15;
+    }
+
+    .planet-info-content p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="solar-system.html" class="active">Solar System</a></li>
+      <li><a href="rotoscope.html">Rotoscope</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>🌌 Solar System Animation</h1>
+    <div class="video-container fade-in">
+      <iframe src="https://drive.google.com/file/d/1rJU-KfNwIlLdCLJ_uVvw37piK7rFj1-d/preview" allow="autoplay"></iframe>
+    </div>
+
+    <h2 class="fade-in">🌍 Earth Time Conversion</h2>
+    <input type="number" id="earthYears" placeholder="Enter Earth Years">
+    <button onclick="convertTime()">Convert</button>
+    <p id="warning" class="warning-text"></p>
+    <div id="planetCards" class="planet-grid fade-in"></div>
+
+    <h2 class="fade-in">📖 Learn More About the Planets</h2>
+    <section class="planet-info-section" id="planetDescriptions"></section>
+  </main>
+
+  <script>
+    const earthYearsInput = document.getElementById("earthYears");
+    const planetCardsContainer = document.getElementById("planetCards");
+    const planetDescriptions = document.getElementById("planetDescriptions");
+
+    const planets = [
+      {
+        name: "Sun",
+        orbit: "—",
+        distance: "—",
+        img: "images/sun.png",
+        desc: "The Sun is the powerful center of our solar system, holding all planets in orbit with its immense gravity. It’s a glowing ball of hot gases undergoing constant nuclear fusion."
+      },
+      {
+        name: "Mercury",
+        orbit: 0.24,
+        distance: "57.9 million km",
+        img: "images/mercury.png",
+        desc: "Mercury is the smallest planet and closest to the Sun. It has no atmosphere to retain heat, making it both scorching hot and freezing cold."
+      },
+      {
+        name: "Venus",
+        orbit: 0.62,
+        distance: "108.2 million km",
+        img: "images/venus.png",
+        desc: "Venus has a thick atmosphere and is the hottest planet. It rotates backwards compared to other planets."
+      },
+      {
+        name: "Earth",
+        orbit: 1.00,
+        distance: "149.6 million km",
+        img: "images/earth.png",
+        desc: "Earth is our home planet, the only one known to support life, with abundant water and a breathable atmosphere."
+      },
+      {
+        name: "Mars",
+        orbit: 1.88,
+        distance: "227.9 million km",
+        img: "images/mars.png",
+        desc: "Mars is known as the Red Planet due to its iron-rich dust. Scientists believe it may have supported microbial life in the past."
+      },
+      {
+        name: "Jupiter",
+        orbit: 11.86,
+        distance: "778.5 million km",
+        img: "images/jupiter.png",
+        desc: "Jupiter is the largest planet with a giant red storm and many moons. It’s mostly made of gas and has a strong magnetic field."
+      },
+      {
+        name: "Saturn",
+        orbit: 29.45,
+        distance: "1.43 billion km",
+        img: "images/saturn.png",
+        desc: "Saturn is famous for its stunning rings made of ice and rock. It’s a gas giant with over 80 moons."
+      },
+      {
+        name: "Uranus",
+        orbit: 84.02,
+        distance: "2.87 billion km",
+        img: "images/uranus.png",
+        desc: "Uranus is unique for its tilted rotation axis. It appears blue due to methane gas in its atmosphere."
+      },
+      {
+        name: "Neptune",
+        orbit: 164.8,
+        distance: "4.5 billion km",
+        img: "images/neptune.png",
+        desc: "Neptune is a cold, windy planet far from the Sun. It has the strongest winds in the solar system."
+      }
+    ];
+
+    function convertTime() {
+      const earthYears = parseFloat(earthYearsInput.value);
+      if (isNaN(earthYears) || earthYears <= 0) {
+        document.getElementById("warning").textContent = "Please enter a valid Earth year value.";
+        return;
+      }
+      document.getElementById("warning").textContent = "";
+      planetCardsContainer.innerHTML = planets
+        .filter(p => p.orbit !== "—")
+        .map(p => {
+          const age = (earthYears / p.orbit).toFixed(2);
+          const revs = Math.floor(earthYears / p.orbit);
+          return `
+            <div class="planet-card">
+              <img src="${p.img}" alt="${p.name}">
+              <h3>${p.name}</h3>
+              <p>Age: ${age} years</p>
+              <p>Revolutions: ${revs}</p>
+              <p>Orbit Time: ${p.orbit} Earth years</p>
+              <p>Distance: ${p.distance}</p>
+            </div>`;
+        }).join('');
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      planetDescriptions.innerHTML = planets.map(p => `
+        <div class="planet-info">
+          <img src="${p.img}" alt="${p.name}">
+          <div class="planet-info-content">
+            <h3>${p.name}</h3>
+            <p>${p.desc}</p>
+          </div>
+        </div>
+      `).join('');
+    });
+  </script>
+</body>
+</html>
