@@ -173,58 +173,112 @@
   </main>
 
   <script>
-    const earthYearsInput = document.getElementById("earthYears");
-    const planetCardsContainer = document.getElementById("planetCards");
-    const planetDescriptions = document.getElementById("planetDescriptions");
+  const earthYearsInput = document.getElementById("earthYears");
+  const planetCardsContainer = document.getElementById("planetCards");
+  const planetDescriptions = document.getElementById("planetDescriptions");
 
-    const planets = [
-      { name: "Sun", orbit: "—", distance: "—", video: "1Sxhpm__eR4aruQ6JAd8g19_3cDnrsMGU", desc: "The Sun is the powerful center of our solar system..." },
-      { name: "Mercury", orbit: 0.24, distance: "57.9 million km", video: "1YWBETHWjfZjPyBiiPcu2CbZ1xwhDDdZV", desc: "Mercury is the smallest planet..." },
-      { name: "Venus", orbit: 0.62, distance: "108.2 million km", video: "1DSyH-nyiQgolYTGILf6x4bnZxh_xQvnu", desc: "Venus has a thick atmosphere..." },
-      { name: "Earth", orbit: 1.00, distance: "149.6 million km", video: "1_C-qytZKxtFkAD9RiDgmNlICu567s7r2", desc: "Earth is our home planet..." },
-      { name: "Mars", orbit: 1.88, distance: "227.9 million km", video: "1Shg8ESC5Bx0DcvcdQhPhfxXG_jYj44tM", desc: "Mars is known as the Red Planet..." },
-      { name: "Jupiter", orbit: 11.86, distance: "778.5 million km", video: "11R9MjTWQG4VbYUsXT72pj3YFGEcUCyZ4", desc: "Jupiter is the largest planet..." },
-      { name: "Saturn", orbit: 29.45, distance: "1.43 billion km", video: "1Vz_l2zMefen-_qC50YP0S6lo6VfNjtDP", desc: "Saturn is famous for its rings..." },
-      { name: "Uranus", orbit: 84.02, distance: "2.87 billion km", video: "1CfJDnh2hU3ROuO-Mt1V8-Rp1fnZKwg3X", desc: "Uranus is unique for its tilt..." },
-      { name: "Neptune", orbit: 164.8, distance: "4.5 billion km", video: "1v5BIWjuJuBuXZZC7zrMM6vZQan005k_n", desc: "Neptune is a cold, windy planet..." }
-    ];
-
-    function convertTime() {
-      const earthYears = parseFloat(earthYearsInput.value);
-      if (isNaN(earthYears) || earthYears <= 0) {
-        document.getElementById("warning").textContent = "Please enter a valid Earth year value.";
-        return;
-      }
-      document.getElementById("warning").textContent = "";
-      planetCardsContainer.innerHTML = planets
-        .filter(p => p.orbit !== "—")
-        .map(p => {
-          const age = (earthYears / p.orbit).toFixed(2);
-          const revs = Math.floor(earthYears / p.orbit);
-          return `
-            <div class="planet-card">
-              <h3>${p.name}</h3>
-              <p>Age: ${age} years</p>
-              <p>Revolutions: ${revs}</p>
-              <p>Orbit Time: ${p.orbit} Earth years</p>
-              <p>Distance: ${p.distance}</p>
-            </div>`;
-        }).join('');
+  const planets = [
+    {
+      name: "Sun",
+      orbit: "—",
+      distance: "—",
+      video: "1Sxhpm__eR4aruQ6JAd8g19_3cDnrsMGU",
+      desc: "The Sun is the powerful center of our solar system..."
+    },
+    {
+      name: "Mercury",
+      orbit: 0.24,
+      distance: "57.9 million km",
+      video: "1YWBETHWjfZjPyBiiPcu2CbZ1xwhDDdZV",
+      desc: "Mercury is the smallest planet..."
+    },
+    {
+      name: "Venus",
+      orbit: 0.62,
+      distance: "108.2 million km",
+      video: "1DSyH-nyiQgolYTGILf6x4bnZxh_xQvnu",
+      desc: "Venus has a thick atmosphere..."
+    },
+    {
+      name: "Earth",
+      orbit: 1.00,
+      distance: "149.6 million km",
+      video: "1_C-qytZKxtFkAD9RiDgmNlICu567s7r2",
+      desc: "Earth is our home planet..."
+    },
+    {
+      name: "Mars",
+      orbit: 1.88,
+      distance: "227.9 million km",
+      video: "1Shg8ESC5Bx0DcvcdQhPhfxXG_jYj44tM",
+      desc: "Mars is known as the Red Planet..."
+    },
+    {
+      name: "Jupiter",
+      orbit: 11.86,
+      distance: "778.5 million km",
+      video: "11R9MjTWQG4VbYUsXT72pj3YFGEcUCyZ4",
+      desc: "Jupiter is the largest planet..."
+    },
+    {
+      name: "Saturn",
+      orbit: 29.45,
+      distance: "1.43 billion km",
+      video: "1Vz_l2zMefen-_qC50YP0S6lo6VfNjtDP",
+      desc: "Saturn is famous for its rings..."
+    },
+    {
+      name: "Uranus",
+      orbit: 84.02,
+      distance: "2.87 billion km",
+      video: "1CfJDnh2hU3ROuO-Mt1V8-Rp1fnZKwg3X",
+      desc: "Uranus is unique for its tilt..."
+    },
+    {
+      name: "Neptune",
+      orbit: 164.8,
+      distance: "4.5 billion km",
+      video: "1v5BIWjuJuBuXZZC7zrMM6vZQan005k_n",
+      desc: "Neptune is a cold, windy planet..."
     }
+  ];
 
-    window.addEventListener("DOMContentLoaded", () => {
-      planetDescriptions.innerHTML = planets.map(p => `
-        <div class="planet-info">
-          <div class="planet-info-video">
-            <iframe src="https://drive.google.com/file/d/${p.video}/preview?autoplay=1" allow="autoplay" muted frameborder="0" allowfullscreen></iframe>
-          </div>
-          <div class="planet-info-content">
+  function convertTime() {
+    const earthYears = parseFloat(earthYearsInput.value);
+    if (isNaN(earthYears) || earthYears <= 0) {
+      document.getElementById("warning").textContent = "Please enter a valid Earth year value.";
+      return;
+    }
+    document.getElementById("warning").textContent = "";
+    planetCardsContainer.innerHTML = planets
+      .filter(p => p.orbit !== "—")
+      .map(p => {
+        const age = (earthYears / p.orbit).toFixed(2);
+        const revs = Math.floor(earthYears / p.orbit);
+        return `
+          <div class="planet-card">
             <h3>${p.name}</h3>
-            <p>${p.desc}</p>
-          </div>
+            <p>Age: ${age} years</p>
+            <p>Revolutions: ${revs}</p>
+            <p>Orbit Time: ${p.orbit} Earth years</p>
+            <p>Distance: ${p.distance}</p>
+          </div>`;
+      }).join('');
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    planetDescriptions.innerHTML = planets.map(p => `
+      <div class="planet-info">
+        <div class="planet-info-video">
+          <iframe src="https://drive.google.com/file/d/${p.video}/preview" allow="autoplay" muted></iframe>
         </div>
-      `).join('');
-    });
-  </script>
+        <div class="planet-info-content">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+        </div>
+      </div>
+    `).join('');
+  });
+</script>
 </body>
 </html>
